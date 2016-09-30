@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea/.name
+.idea/Cutthroat.iml
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/misc.xml
+.idea/modules.xml
