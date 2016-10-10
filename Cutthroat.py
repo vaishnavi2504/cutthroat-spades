@@ -26,10 +26,13 @@ def main():
 
     # define 4 players
     players = []
-    players.append(Player.Player())
-    players.append(Player.Player())
-    players.append(Player.Player())
-    players.append(Player.Player())
+    players.append(Player.Player('N'))
+    players.append(Player.Player('S'))
+    players.append(Player.Player('W'))
+    players.append(Player.Player('E'))
+
+    player_sprites = pygame.sprite.RenderPlain((players[0].playerIcon, players[1].playerIcon,
+                                               players[2].playerIcon, players[3].playerIcon))
 
     # start a new game
     start_game(cards, players)
@@ -46,7 +49,7 @@ def main():
 
         # Draw Everything
         screen.blit(background, (0, 0))
-        # allsprites.draw(screen)
+        player_sprites.draw(screen)
         pygame.display.flip()
 
 
