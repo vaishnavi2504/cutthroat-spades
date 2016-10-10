@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
 from Utilities import *
+import random
+import Player
 import Card
 
 
@@ -22,7 +24,15 @@ def main():
     # define a dictionary with all the cards
     cards = init_cards()
 
-    # assign all the cards to a player
+    # define 4 players
+    players = []
+    players.append(Player.Player())
+    players.append(Player.Player())
+    players.append(Player.Player())
+    players.append(Player.Player())
+
+    # start a new game
+    start_game(cards, players)
 
     while 1:
         clock.tick(60)
@@ -40,6 +50,10 @@ def main():
         pygame.display.flip()
 
 
+def start_game(cards, players):
+    assign_cards(cards, players)
+
+
 def init_cards():
     cards = {}
 
@@ -48,6 +62,15 @@ def init_cards():
             cards[suit+value] = Card.Card(suit, value)
 
     return cards
+
+
+def assign_cards(cards, players):
+    for card in cards:
+        ranValue = random.randint(0, 3)
+        while not (players[ranValue].assign_card(cards[card])):
+            ranValue = random.randint(0, 3)
+
+    pass
 
 
 if __name__ == '__main__':
