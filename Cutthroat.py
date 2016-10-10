@@ -1,11 +1,13 @@
 import pygame
 from pygame.locals import *
+from Utilities import *
+import Card
 
 
 def main():
     # init everything
     pygame.init()
-    screen = pygame.display.set_mode((800, 800))
+    screen = pygame.display.set_mode((1300, 800))
     pygame.display.set_caption('Cutthroat Killer Spades')
     clock = pygame.time.Clock()
 
@@ -16,6 +18,11 @@ def main():
 
     screen.blit(background, (0, 0))
     pygame.display.flip()
+
+    # define a dictionary with all the cards
+    cards = init_cards()
+
+    # assign all the cards to a player
 
     while 1:
         clock.tick(60)
@@ -31,6 +38,16 @@ def main():
         screen.blit(background, (0, 0))
         # allsprites.draw(screen)
         pygame.display.flip()
+
+
+def init_cards():
+    cards = {}
+
+    for suit in suits:
+        for value in values:
+            cards[suit+value] = Card.Card(suit, value)
+
+    return cards
 
 
 if __name__ == '__main__':
