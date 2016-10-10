@@ -26,16 +26,18 @@ def main():
 
     # define 4 players
     players = []
-    players.append(Player.Player('N'))
-    players.append(Player.Player('S'))
-    players.append(Player.Player('W'))
-    players.append(Player.Player('E'))
+    players.append(Player.Player('N', background))
+    players.append(Player.Player('S', background))
+    players.append(Player.Player('W', background))
+    players.append(Player.Player('E', background))
 
     player_sprites = pygame.sprite.RenderPlain((players[0].playerIcon, players[1].playerIcon,
                                                players[2].playerIcon, players[3].playerIcon))
 
     # start a new game
     start_game(cards, players)
+
+    myfont = pygame.font.SysFont("monospace", 16)
 
     while 1:
         clock.tick(60)
@@ -50,6 +52,29 @@ def main():
         # Draw Everything
         screen.blit(background, (0, 0))
         player_sprites.draw(screen)
+
+        # Display scores/bids
+        score_text = myfont.render("Tricks {0}".format(players[0].tricks_won), 1, (0, 0, 0))
+        screen.blit(score_text, (background.get_width() / 2 + 80, 20))
+        bid_text = myfont.render("Bid {0}".format(players[0].bid), 1, (0, 0, 0))
+        screen.blit(bid_text, (background.get_width() / 2 + 80, 40))
+
+        score_text = myfont.render("Tricks {0}".format(players[1].tricks_won), 1, (0, 0, 0))
+        screen.blit(score_text, (background.get_width() / 2 + 80, background.get_height() - 100))
+        bid_text = myfont.render("Bid {0}".format(players[1].bid), 1, (0, 0, 0))
+        screen.blit(bid_text, (background.get_width() / 2 + 80, background.get_height() - 80))
+
+        score_text = myfont.render("Tricks {0}".format(players[2].tricks_won), 1, (0, 0, 0))
+        screen.blit(score_text, (background.get_width() - 100, background.get_height() / 2 + 80))
+        bid_text = myfont.render("Bid {0}".format(players[2].bid), 1, (0, 0, 0))
+        screen.blit(bid_text, (background.get_width() - 100, background.get_height() / 2 + 100))
+
+        score_text = myfont.render("Tricks {0}".format(players[3].tricks_won), 1, (0, 0, 0))
+        screen.blit(score_text, (15, background.get_height() / 2 + 80))
+        bid_text = myfont.render("Bid {0}".format(players[3].bid), 1, (0, 0, 0))
+        screen.blit(bid_text, (15, background.get_height() / 2 + 100))
+
+
         pygame.display.flip()
 
 
